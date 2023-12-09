@@ -64,7 +64,7 @@ module.exports = {
           "@apply flex items-center justify-start": {},
         },
         ".flexEnd": {
-          "flex items-center justify-end": {},
+          "@apply flex items-center justify-end": {},
         },
         ".max-container": {
           "@apply mx-auto max-w-[1440px]": {},
