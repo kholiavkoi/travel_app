@@ -1,20 +1,78 @@
-import type { Config } from 'tailwindcss'
+import type { PluginAPI } from "tailwindcss/types/config";
 
-const config: Config = {
+/** @type {import('tailwindcss').Config} */
+module.exports = {
   content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
+      colors: {
+        green: {
+          50: "#30AF5B",
+          90: "#292C27",
+        },
+        gray: {
+          10: "#EEEEEE",
+          20: "#A2A2A2",
+          30: "#7B7B7B",
+          50: "#585858",
+          90: "#141414",
+        },
+        orange: {
+          50: "#FF814C",
+        },
+        blue: {
+          70: "#021639",
+        },
+        yellow: {
+          50: "#FEC601",
+        },
+      },
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        "bg-img-1": "url('/img-1.png')",
+        "bg-img-2": "url('/img-2.png')",
+        "feature-bg": "url('/feature-bg.png')",
+        pattern: "url('/pattern.png')",
+        "pattern-2": "url('/pattern-bg.png')",
+      },
+      screens: {
+        xs: "400px",
+        "3xl": "1680px",
+        "4xl": "2200px",
+      },
+      maxWidth: {
+        "10xl": "1512px",
+      },
+      borderRadius: {
+        "5xl": "40px",
       },
     },
   },
-  plugins: [],
-}
-export default config
+  plugins: [
+    ({ addUtilities }: PluginAPI) => {
+      addUtilities({
+        ".flexBetween": {
+          "@apply flex items-center justify-between": {},
+        },
+        ".flexCenter": {
+          "@apply flex items-center justify-center": {},
+        },
+        ".flexStart": {
+          "@apply flex items-center justify-start": {},
+        },
+        ".flexEnd": {
+          "flex items-center justify-end": {},
+        },
+        ".max-container": {
+          "@apply mx-auto max-w-[1440px]": {},
+        },
+        ".padding-container": {
+          "@apply px-6 lg:px-20 3xl:px-0": {},
+        },
+      });
+    },
+  ],
+};
